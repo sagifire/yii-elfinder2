@@ -132,9 +132,12 @@ class elFinderConnector {
 			exit();
 		} else {
 			if (!empty($data['raw']) && !empty($data['error'])) {
-				Yii::log($data['error'], CLogger::LEVEL_ERROR, 'elfinder');
+				Yii::log(json_encode($data['error']), CLogger::LEVEL_ERROR, 'elfinder');
 				exit($data['error']);
 			} else {
+				if (!empty($data['error'])) {
+					Yii::log(json_encode($data), CLogger::LEVEL_ERROR, 'elfinder');
+				}
 				exit(json_encode($data));
 			}
 		}
